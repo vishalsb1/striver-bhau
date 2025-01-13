@@ -30,6 +30,20 @@ void bubble_sort(int arr[], int n){
         }
     }
 }
+
+void insertion_sort(int arr[],int n){
+
+    for(int i=0;i<n;i++){
+        int j=i;
+        // j cha index hyo 0 peskha motha hava karan arr[j-1] kela tr satisfy hoel
+        //          j chya adhi cha and swata(j)
+        while(j>0 && (arr[j-1]>arr[j])){
+            swap(arr[j],arr[j-1]);
+            // ani magha allo karan pahilecha kai konta kami ale pahayla 
+            j--;
+        }
+    }
+}
 void print(int arr[],int n){
     for(int i=0;i<n;i++){
         cout<<arr[i]<<" ";
@@ -43,9 +57,10 @@ int main(){
     cout<<"Before swaping :";
     print(arr,n);
 
-    // sortinf func
+    // sorting func
     // selection_sort(arr,n);
-    bubble_sort(arr,n);
+    // bubble_sort(arr,n);
+    insertion_sort(arr,n);
 
     cout<<"After swaping :";
     print(arr,n);
