@@ -51,8 +51,9 @@ void print(int arr[],int n){
     cout<<endl;
     cout<<endl;
 }
+// ------------------------------------------merge sort---------------------------------------------------------
+// merege sorting algo  (TC)->O(n*logn) : (SC)-> O(1)
 
-// merege sorting algo
 void merge_arr(int arr[],int low,int mid,int high){
 
     // making an temp array
@@ -108,6 +109,61 @@ void merge_sort(int arr[],int low,int high){
     merge_arr(arr,low,mid,high);
 }
 
+// ----------------------------------------------quick sort------------------------------------------------------
+// quick sort (TC)->O(n*logn) : (SC)-> O(1)
+
+// it basically has two part 
+// 2-> do quick sort
+// 1->find partation index
+
+
+// 1st
+int pivot_indexer(int arr[],int low,int high){
+    // assume the 1st element of array as pivot
+    int pvt=arr[low];
+    int i=low;
+    int j=high;
+
+    while(i<j){
+        // find the 1st greatest from the left side of arr
+        while(arr[i]>=pvt && i<high){
+            i++;
+        }
+        // find the 1st lowest from the right side of arr
+        while(arr[j]<pvt && j>low){
+            j--;
+        }
+        if (i < j) swap(arr[i], arr[j]);
+
+        /*
+        // this will give an array smaller to greater 
+        // find the 1st lowest from the left side of arr
+        while(arr[i]<=pvt && i<high){
+            i++;
+        }
+        // find the 1st hight from the right side of arr
+        while(arr[j]>pvt && j>low){
+            j--;
+        }
+
+        */ 
+    }
+    swap(arr[low],arr[j]);
+
+    // pivot
+    return j;
+}
+// 2nd
+void quick_sort(int arr[],int low,int high){
+    if(low<high){
+        int pivot=pivot_indexer(arr,low,high);
+
+        // calling quicksort for left part 
+        quick_sort(arr,low,pivot-1);
+        // calling quicksort for right part 
+        quick_sort(arr,pivot+1,high);
+    }
+}
 int main(){
     int arr[]={2,43,54,33,22,11};
     int n=sizeof(arr)/sizeof(int);
@@ -118,7 +174,9 @@ int main(){
     // selection_sort(arr,n);
     // bubble_sort(arr,n);
     // insertion_sort(arr,n);
-    merge_sort(arr,0,n-1);
+    // merge_sort(arr,0,n-1);
+
+    quick_sort(arr,0,n-1);
     cout<<"After swaping :";
     print(arr,n);
 
